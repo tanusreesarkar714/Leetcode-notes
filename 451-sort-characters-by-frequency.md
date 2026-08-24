@@ -3,6 +3,7 @@
 Given a string s , we have to rearrange it's characters such that **the one with higher frequency appears first**. 
 
 If multiple characters have same frequency, then any of them can appear first (i.e. **in case of same frequency, the order doesnot matter**).
+The strings can also have capital letters and digits, alongside the small letters.
 
 Example : 
 
