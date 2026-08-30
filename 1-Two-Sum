@@ -1,0 +1,14 @@
+vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> seen;//value -> index
+        for(int i=0; i<nums.size(); i++){
+            int complement = target - nums[i];
+            if(seen.count(complement)){
+                vector<int> ans;
+                ans.push_back(i);
+                ans.push_back(seen[complement]);
+                return ans;
+            }
+            seen[nums[i]] = i;
+        }
+        return {};// no valid pair found
+    }
