@@ -67,3 +67,33 @@ public:
 ```
 * **Time Complexity - O(n log n)**
 * **Space Complexity - O(n)**
+## Approach 2 - By Sliding Window
+### Algorithm
+* First sort the array.
+* Take two pointers, l and r, initialize them from 0.
+* if(ops > k) then shrink the window for only one time, only 1 time because there is no point in shrinking the window further, we are here to find the maximum frequency and shrinking will only minimize the frequency.
+* and if ops >= k, then make the window larger in search of a more better frequency.
+### Code
+```
+int maxFrequency(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
+        int l = 0;
+        long currSum = 0;
+        int n = nums.size();
+        int result = 0;
+        for(int r=0; r<n; r++){
+            long target = nums[r];
+            currSum += nums[r];
+            long windowSum = (r - l + 1) * target;
+            long ops = windowSum - currSum;
+            if(ops > k){//shrink the window
+                currSum -= nums[l];
+                l++;
+                windowSum = (r-l+1) * target;
+                ops = windowSum - currSum;
+            }
+            result = max(result, r-l+1);
+        }
+        return result;
+    }
+```
